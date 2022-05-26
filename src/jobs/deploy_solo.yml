@@ -7,24 +7,10 @@ steps:
       dreamops-version: << parameters.dreamops-version >>
   - run:
       name: Deploy to targets
-      command: |-
-          #!/usr/bin/env bash
-
-          # Create temp directory to hold key
-          key_dir=$(mktemp -d dream-orb.XXXXXXXX)
-
-          # Set trap to clean up directory
-          trap "rm -rf -- '$key_dir'" EXIT
-
-          # Write SSH key environment variable to temp file
-          echo -e ${<< parameters.ssh-key >>} > $key_dir/deploy.pem
-          chmod 0400 $key_dir/deploy.pem
-
-          dream deploy solo -i $key_dir/deploy.pem -T << parameters.targets >>
-
-          rm -rf -- "$key_dir"
-          trap - EXIT
-          exit
+      command: <<include(scripts/deploy_solo.sh)>>
+      environment:
+        SSH_KEY: << parameters.ssh-key >>
+        TARGETS: << parameters.targets >>
 parameters:
   ruby-version:
     default: 3.1.2

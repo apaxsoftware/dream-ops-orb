@@ -1,7 +1,7 @@
 version: 2.1
 
-description: >
-  Install and configure the dream-ops CLI
+description: |
+  Install and configure the dream-ops command-line interface (dream).
 
 display:
   home_url: "https://github.com/chris-allen/dream-ops"
