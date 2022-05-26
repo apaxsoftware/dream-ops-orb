@@ -10,7 +10,15 @@ trap 'rm -rf -- "$key_dir"' EXIT
 echo -e ${!SSH_KEY} > $key_dir/deploy.pem
 chmod 0400 $key_dir/deploy.pem
 
-dream deploy solo -i $key_dir/deploy.pem -T $TARGETS
+
+# Compile arguments
+args=()
+(( FORCE_SETUP == 1 )) && args+=( '-f' )
+args+=( '-i' "$key_dir/deploy.pem" )
+args+=( '-T' "$TARGETS" )
+
+# Execute deployment
+dream deploy solo "${args[@]}"
 
 rm -rf -- "$key_dir"
 trap - EXIT

@@ -9,6 +9,7 @@ steps:
       name: Deploy to targets
       command: <<include(scripts/deploy_solo.sh)>>
       environment:
+        FORCE_SETUP: << parameters.force-setup >>
         SSH_KEY: << parameters.ssh-key >>
         TARGETS: << parameters.targets >>
 parameters:
@@ -20,6 +21,10 @@ parameters:
     default: '>= 0.8.0'
     description: The version of the dream-ops gem to use.
     type: string
+  force-setup:
+    description: Always run setup.
+    type: boolean
+    default: false
   ssh-key:
     description: The ssh key to use for solo deployments
     type: env_var_name
