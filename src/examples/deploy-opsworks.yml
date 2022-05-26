@@ -1,0 +1,11 @@
+description: >
+  Sample opsworks deployment.
+usage:
+  version: 2.1
+  orbs:
+    dream: apaxsoftware/dream-ops@1.0.0
+  workflows:
+    use-my-orb:
+      jobs:
+        - dream/deploy_opsworks:
+            targets: abcdefgh-ijk1-1234-m1n2-opqrstuvwxyz

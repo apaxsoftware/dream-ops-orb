@@ -1,0 +1,12 @@
+description: >
+  Sample chef-solo deployment.
+usage:
+  version: 2.1
+  orbs:
+    dream: apaxsoftware/dream-ops@1.0.0
+  workflows:
+    use-my-orb:
+      jobs:
+        - dream/deploy_solo:
+            ssh-key: TEST_SSH_KEY
+            targets: ubuntu@1.1.1.1

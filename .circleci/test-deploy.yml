@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  <orb-name>: <namespace>/<orb-name>@dev:<<pipeline.git.revision>>
+  dream: apaxsoftware/dream-ops@dev:<<pipeline.git.revision>>
   orb-tools: circleci/orb-tools@11.1
 
 filters: &filters
@@ -15,8 +15,8 @@ jobs:
         - image: cimg/base:current
       steps:
         - checkout
-        # Run your orb's commands to validate them.
-        - <orb-name>/greet
+        - dream/install_cli
+        - run: dream -v
 workflows:
   test-deploy:
     jobs:
@@ -26,7 +26,7 @@ workflows:
       - orb-tools/pack:
           filters: *filters
       - orb-tools/publish:
-          orb-name: <namespace>/<orb-name>
+          orb-name: apaxsoftware/dream-ops
           vcs-type: << pipeline.project.type >>
           pub-type: production
           requires:

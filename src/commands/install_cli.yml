@@ -1,0 +1,18 @@
+description: >
+  This command installs ruby and the dream-ops gem.
+parameters:
+  ruby-version:
+    default: 3.1.2
+    description: The version of the ruby to use.
+    type: string
+  dreamops-version:
+    default: '>= 0.8.0'
+    description: The version of the dream-ops gem to use.
+    type: string
+steps:
+  - checkout
+  - ruby/install:
+      version: << parameters.ruby-version >>
+  - run:
+      name: Install dream-ops
+      command: gem install dream-ops -v '<< parameters.dreamops-version >>'

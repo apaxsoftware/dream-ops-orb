@@ -1,0 +1,42 @@
+description: >
+  Kicks off a chef-solo deployment for the specified targets.
+executor: ruby/default
+steps:
+  - install_cli:
+      ruby-version: << parameters.ruby-version >>
+      dreamops-version: << parameters.dreamops-version >>
+  - run:
+      name: Deploy to targets
+      command: |-
+          #!/usr/bin/env bash
+
+          # Create temp directory to hold key
+          key_dir=$(mktemp -d dream-orb.XXXXXXXX)
+
+          # Set trap to clean up directory
+          trap "rm -rf -- '$key_dir'" EXIT
+
+          # Write SSH key environment variable to temp file
+          echo -e ${<< parameters.ssh-key >>} > $key_dir/deploy.pem
+          chmod 0400 $key_dir/deploy.pem
+
+          dream deploy solo -i $key_dir/deploy.pem -T << parameters.targets >>
+
+          rm -rf -- "$key_dir"
+          trap - EXIT
+          exit
+parameters:
+  ruby-version:
+    default: 3.1.2
+    description: The version of the ruby to use.
+    type: string
+  dreamops-version:
+    default: '>= 0.8.0'
+    description: The version of the dream-ops gem to use.
+    type: string
+  ssh-key:
+    description: The ssh key to use for solo deployments
+    type: env_var_name
+  targets:
+    description: Deploy targets separated by whitespace.
+    type: string
