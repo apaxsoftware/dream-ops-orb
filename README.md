@@ -5,17 +5,27 @@
 
 CircleCI orb for installing and configuring the dream-ops CLI in your CircleCI jobs.
 
-## Resources
-
-[CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/apaxsoftware/dream-ops) - The official registry page of this orb for all versions, executors, commands, and jobs described.
-
-[CircleCI Orb Docs](https://circleci.com/docs/2.0/orb-intro/#section=configuration) - Docs for using, creating, and publishing CircleCI Orbs.
-
-### How to Contribute
+## How to Contribute
 
 We welcome [issues](https://github.com/apaxsoftware/dream-ops-orb/issues) to and [pull requests](https://github.com/apaxsoftware/dream-ops-orb/pulls) against this repository!
 
-### How to Publish An Update
+## How to Publish a Development Orb
+
+As outlined in [CircleCI Orb Concepts](https://circleci.com/docs/2.0/orb-concepts/#development-orbs), you can publish devlopment orbs using the CLI. The version string must start with `dev:` followed by any string. A good convention is to use the feature branch in the name (eg. `apaxsoftware/dream-ops@dev:feature-branch`).
+
+To validate your local orb:
+
+```bash
+circleci orb pack src | circleci orb validate -
+```
+
+And to publish a public orb that's unlisted in the registry and expires in 90 days:
+
+```bash
+circleci orb pack src | circleci orb publish - apaxsoftware/dream-ops@dev:feature-branch
+```
+
+## How to Publish An Update
 1. Merge pull requests with desired changes to the main branch.
     - For the best experience, squash-and-merge and use [Conventional Commit Messages](https://conventionalcommits.org/).
 2. Find the current version of the orb.
