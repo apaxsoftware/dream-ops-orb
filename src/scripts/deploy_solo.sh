@@ -15,7 +15,8 @@ chmod 0400 $key_dir/deploy.pem
 args=()
 (( FORCE_SETUP == 1 )) && args+=( '-f' )
 args+=( '-i' "$key_dir/deploy.pem" )
-args+=( '-T' "$TARGETS" )
+read -ar TARGETS <<< "$TARGETS"
+args+=( '-T' "${TARGETS[@]}" )
 
 # Execute deployment
 dream deploy solo "${args[@]}"
