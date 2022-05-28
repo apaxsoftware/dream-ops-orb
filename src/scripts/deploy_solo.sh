@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2162
 
 # Create temp directory to hold key
 key_dir=$(mktemp -d dream-orb.XXXXXXXX)
@@ -15,7 +16,7 @@ chmod 0400 $key_dir/deploy.pem
 args=()
 (( FORCE_SETUP == 1 )) && args+=( '-f' )
 args+=( '-i' "$key_dir/deploy.pem" )
-read -ar TARGETS <<< "$TARGETS"
+read -a TARGETS <<< "$TARGETS"
 args+=( '-T' "${TARGETS[@]}" )
 
 # Execute deployment
