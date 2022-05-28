@@ -3,7 +3,7 @@
 [![CircleCI Build Status](https://circleci.com/gh/apaxsoftware/dream-ops-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/apaxsoftware/dream-ops-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/apaxsoftware/dream-ops.svg)](https://circleci.com/orbs/registry/orb/apaxsoftware/dream-ops) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/apaxsoftware/dream-ops-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
 
-CircleCI orb for installing and configuring the dream-ops CLI in your CircleCI jobs.
+CircleCI orb for installing and configuring the [dream-ops](https://rubygems.org/gems/dream-ops) CLI in your CircleCI jobs.
 
 ## How to Contribute
 
