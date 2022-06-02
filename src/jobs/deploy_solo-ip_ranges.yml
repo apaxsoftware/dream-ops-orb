@@ -1,0 +1,34 @@
+description: >
+  Kicks off a chef-solo deployment for the specified targets.
+executor: ruby/default
+circleci_ip_ranges: true
+steps:
+  - install_cli:
+      ruby-version: << parameters.ruby-version >>
+      dreamops-version: << parameters.dreamops-version >>
+  - run:
+      name: Deploy to targets
+      command: <<include(scripts/deploy_solo.sh)>>
+      environment:
+        FORCE_SETUP: << parameters.force-setup >>
+        SSH_KEY: << parameters.ssh-key >>
+        TARGETS: << parameters.targets >>
+parameters:
+  ruby-version:
+    default: 3.1.2
+    description: The version of the ruby to use.
+    type: string
+  dreamops-version:
+    default: '>= 0.8.0'
+    description: The version of the dream-ops gem to use.
+    type: string
+  force-setup:
+    description: Always run setup.
+    type: boolean
+    default: false
+  ssh-key:
+    description: The ssh key to use for solo deployments
+    type: env_var_name
+  targets:
+    description: Deploy targets separated by whitespace.
+    type: string
