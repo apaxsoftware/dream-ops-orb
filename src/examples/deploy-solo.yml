@@ -3,10 +3,10 @@ description: >
 usage:
   version: 2.1
   orbs:
-    dream: apaxsoftware/dream-ops@1.0.0
+    dream: apaxsoftware/dream-ops@2.0.0
   workflows:
     use-my-orb:
       jobs:
         - dream/deploy_solo:
-            ssh-key: TEST_SSH_KEY
+            ssh_key: TEST_SSH_KEY
             targets: ubuntu@1.1.1.1
