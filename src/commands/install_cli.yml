@@ -15,4 +15,6 @@ steps:
       version: << parameters.ruby_version >>
   - run:
       name: Install dream-ops
-      command: gem install dream-ops -v '<< parameters.dreamops_version >>'
+      command: <<include(scripts/install_cli.sh)>>
+      environment:
+        DREAMOPS_VERSION: << parameters.dreamops_version >>
