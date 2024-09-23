@@ -4,29 +4,29 @@ executor: ruby/default
 circleci_ip_ranges: true
 steps:
   - install_cli:
-      ruby-version: << parameters.ruby-version >>
-      dreamops-version: << parameters.dreamops-version >>
+      ruby_version: << parameters.ruby_version >>
+      dreamops_version: << parameters.dreamops_version >>
   - run:
       name: Deploy to targets
       command: <<include(scripts/deploy_solo.sh)>>
       environment:
-        FORCE_SETUP: << parameters.force-setup >>
-        SSH_KEY: << parameters.ssh-key >>
+        FORCE_SETUP: << parameters.force_setup >>
+        SSH_KEY: << parameters.ssh_key >>
         TARGETS: << parameters.targets >>
 parameters:
-  ruby-version:
+  ruby_version:
     default: 3.1.2
     description: The version of the ruby to use.
     type: string
-  dreamops-version:
-    default: '>= 0.8.0'
+  dreamops_version:
+    default: '>= 0.8.1'
     description: The version of the dream-ops gem to use.
     type: string
-  force-setup:
+  force_setup:
     description: Always run setup.
     type: boolean
     default: false
-  ssh-key:
+  ssh_key:
     description: The ssh key to use for solo deployments
     type: env_var_name
   targets:

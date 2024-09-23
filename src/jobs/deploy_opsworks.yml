@@ -3,38 +3,38 @@ description: >
 executor: ruby/default
 steps:
   - install_cli:
-      ruby-version: << parameters.ruby-version >>
-      dreamops-version: << parameters.dreamops-version >>
+      ruby_version: << parameters.ruby_version >>
+      dreamops_version: << parameters.dreamops_version >>
   - run:
       name: Deploy to targets
       command: <<include(scripts/deploy_opsworks.sh)>>
       environment:
-        FORCE_SETUP: << parameters.force-setup >>
+        FORCE_SETUP: << parameters.force_setup >>
         TARGETS: << parameters.targets >>
 parameters:
-  ruby-version:
+  ruby_version:
     default: 3.1.2
     description: The version of the ruby to use.
     type: string
-  dreamops-version:
+  dreamops_version:
     default: '>= 0.8.1'
     description: The version of the dream-ops gem to use.
     type: string
-  force-setup:
+  force_setup:
     description: Always run setup.
     type: boolean
     default: false
-  aws-access-key-id:
+  aws_access_key_id:
     description: |
       AWS access key id for IAM role. Set this to the name of the environment variable you will use to hold this value, i.e. AWS_ACCESS_KEY_ID.
     type: env_var_name
     default: AWS_ACCESS_KEY_ID
-  aws-secret-access-key:
+  aws_secret_access_key:
     description: |
       AWS secret key for IAM role. Set this to the name of the environment variable you will use to hold this value, i.e. AWS_SECRET_ACCESS_KEY.
     type: env_var_name
     default: AWS_SECRET_ACCESS_KEY
-  aws-region:
+  aws_region:
     description: AWS region to operate in. Set this to the name of the environment variable you will use to hold this value, i.e. AWS_DEFAULT_REGION.
     type: env_var_name
     default: AWS_DEFAULT_REGION
