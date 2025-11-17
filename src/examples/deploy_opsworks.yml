@@ -3,7 +3,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    dream: apaxsoftware/dream-ops@2.0.0
+    dream: apaxsoftware/dream-ops@2.1.0
   workflows:
     use-my-orb:
       jobs:
